@@ -1,14 +1,17 @@
 # NAME
 
-Net::Azure::CognitiveServices - It's new $module
+Net::Azure::CognitiveServices - API Client Manager for Microsoft Azure Cognitive Services API
 
 # SYNOPSIS
 
     use Net::Azure::CognitiveServices;
+    my $cognitive = Net::Azure::CognitiveServices->new(access_key => 'YOURSECRET');
+    my $faceapi   = $cognitive->Face;
+    $faceapi->detect(...);
 
 # DESCRIPTION
 
-Net::Azure::CognitiveServices is ...
+Net::Azure::CognitiveServices is a client manager class for Azure Cognitive Services API.
 
 # LICENSE
 

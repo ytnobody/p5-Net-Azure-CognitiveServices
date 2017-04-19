@@ -40,7 +40,7 @@ __END__
 
 =head1 NAME
 
-Net::Azure::CognitiveServices - API Client for Microsoft Azure Cognitive Services API
+Net::Azure::CognitiveServices - API Client Manager for Microsoft Azure Cognitive Services API
 
 =head1 SYNOPSIS
 
@@ -51,7 +51,7 @@ Net::Azure::CognitiveServices - API Client for Microsoft Azure Cognitive Service
 
 =head1 DESCRIPTION
 
-Net::Azure::CognitiveServices is ...
+Net::Azure::CognitiveServices is a client manager class for Azure Cognitive Services API.
 
 =head1 LICENSE
 
