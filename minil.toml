@@ -1,0 +1,6 @@
+name = "Net-Azure-CognitiveServices"
+# badges = ["travis"]
+authority="cpan:YTURTLE"
+
+module_maker="ModuleBuildTiny"
+
