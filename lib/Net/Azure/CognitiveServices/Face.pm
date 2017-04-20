@@ -17,11 +17,11 @@ Net::Azure::CognitiveServices::Face - A wrapper class for Face API of Azure Cogn
 
 =head1 SYNOPSIS
 
-    use Net::Azure::CognitiveServices::Face;
-    Net::Azure::CognitiveServices::Face->access_key('YOUR_ACCESS_KEY');
+    use Net::Azure::CognitiveServices;
+    my $cognitive = Net::Azure::CognitiveServices->new(access_key => 'YOUR_ACCESS_KEY');
 
     ### Face - Detect
-    my $face_api = Net::Azure::CognitiveServices::Face->Face;
+    my $face_api = $cognitive->Face->Face;
     my $result = $face_api->detect(
         "http://example.com/photo.jpg", 
         returnFaceAttributes => ['age', 'gender'],
