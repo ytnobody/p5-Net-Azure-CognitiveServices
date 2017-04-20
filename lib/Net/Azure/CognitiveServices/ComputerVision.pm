@@ -59,6 +59,12 @@ sub get_handwritten_text_operation {
     return $data;
 }
 
+sub _generate_thumbnail_request {
+    my ($self, $image_url, %param) = @_;
+    $self->build_request(POST => ["generateThumbnail", %param], undef, {url => $image_url});
+}
+
+
 
 1;
 __END__
