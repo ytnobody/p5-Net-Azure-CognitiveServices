@@ -3,7 +3,7 @@ use warnings;
 use Test::More;
 use Net::Azure::CognitiveServices;
 
-my $cognitive = Net::Azure::CognitiveServices->new(access_key => 'MYSECRET');
+my $cognitive = Net::Azure::CognitiveServices->new(region => 'westus', access_key => 'MYSECRET');
 my $pg = $cognitive->Face->PersonGroup;
 isa_ok $pg, 'Net::Azure::CognitiveServices::Face::PersonGroup';
 can_ok $pg, qw/_list_request/;

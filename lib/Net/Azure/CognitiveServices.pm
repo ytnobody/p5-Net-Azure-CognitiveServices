@@ -10,12 +10,12 @@ use Class::Accessor::Lite (
 );
 
 our $VERSION = "0.01";
-our $ENDPOINT = 'https://westus.api.cognitive.microsoft.com';
+our $BASEDOMAIN = 'api.cognitive.microsoft.com';
 our $AUTOLOAD;
 
 sub new {
     my ($class, %params) = @_;
-    $params{endpoint} ||= $ENDPOINT;
+    $params{endpoint} ||= sprintf('https://%s.%s', delete($params{region}), $BASEDOMAIN);
     $params{instance} = {};
     bless {%params}, $class;
 }
@@ -45,7 +45,10 @@ Net::Azure::CognitiveServices - API Client Manager for Microsoft Azure Cognitive
 =head1 SYNOPSIS
 
     use Net::Azure::CognitiveServices;
-    my $cognitive = Net::Azure::CognitiveServices->new(access_key => 'YOURSECRET');
+    my $cognitive = Net::Azure::CognitiveServices->new(
+        access_key => 'YOURSECRET',
+        region     => 'westus',
+    );
     my $faceapi   = $cognitive->Face;
     $faceapi->detect(...);
 

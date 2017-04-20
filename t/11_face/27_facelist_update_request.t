@@ -3,7 +3,7 @@ use warnings;
 use Test::More;
 use Net::Azure::CognitiveServices;
 
-my $cognitive = Net::Azure::CognitiveServices->new(access_key => 'MYSECRET');
+my $cognitive = Net::Azure::CognitiveServices->new(region => 'westus', access_key => 'MYSECRET');
 my $facelist = $cognitive->Face->FaceList;
 isa_ok $facelist, 'Net::Azure::CognitiveServices::Face::FaceList';
 can_ok $facelist, qw/_update_request/;
