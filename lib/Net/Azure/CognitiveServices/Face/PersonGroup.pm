@@ -13,7 +13,8 @@ sub _create_request {
 sub create {
     my ($self, $person_group_id, %param) = @_;
     my $req = $self->_create_request($person_group_id, %param);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _delete_request {
@@ -24,7 +25,8 @@ sub _delete_request {
 sub delete {
     my ($self, $person_group_id) = @_;
     my $req = $self->_delete_request($person_group_id);
-    $self->request($req); 
+    my $data = $self->request($req); 
+    return $data;
 }
 
 sub _get_request {
@@ -35,7 +37,8 @@ sub _get_request {
 sub get {
     my ($self, $person_group_id) = @_;
     my $req = $self->_get_request($person_group_id);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _training_status_request {
@@ -46,7 +49,8 @@ sub _training_status_request {
 sub training_status {
     my ($self, $person_group_id) = @_;
     my $req = $self->_training_status_request($person_group_id);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _list_request {
@@ -57,7 +61,8 @@ sub _list_request {
 sub list {
     my ($self, %param) = @_;
     my $req = $self->_list_request(%param);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _train_request {
@@ -68,7 +73,8 @@ sub _train_request {
 sub train {
     my ($self, $person_group_id) = @_;
     my $req = $self->_train_request($person_group_id);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _update_request {
@@ -79,7 +85,8 @@ sub _update_request {
 sub update {
     my ($self, $person_group_id, %param) = @_;
     my $req = $self->_update_request($person_group_id, %param);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 1;

@@ -17,7 +17,8 @@ sub _create_request {
 sub create {
     my ($self, $face_list_id, %param) = @_;
     my $req = $self->_create_request($face_list_id, %param);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _add_request {
@@ -28,7 +29,8 @@ sub _add_request {
 sub add {
     my ($self, $face_list_id, $image_url, %param) = @_;
     my $req = $self->_add_request($face_list_id, $image_url, %param);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _delete_request {
@@ -39,7 +41,8 @@ sub _delete_request {
 sub delete {
     my ($self, $face_list_id, $remove_face_id) = @_;
     my $req = $self->_delete_request($face_list_id, $remove_face_id);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _flush_request {
@@ -50,7 +53,8 @@ sub _flush_request {
 sub flush {
     my ($self, $face_list_id) = @_;
     my $req = $self->_flush_request($face_list_id);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _get_request {
@@ -61,7 +65,8 @@ sub _get_request {
 sub get {
     my ($self, $face_list_id) = @_;
     my $req = $self->_get_request($face_list_id);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _list_request {
@@ -72,7 +77,8 @@ sub _list_request {
 sub list {
     my ($self) = @_;
     my $req = $self->_list_request;
-    $self->request($req); 
+    my $data = $self->request($req); 
+    return $data;
 }
 
 sub _update_request {
@@ -83,7 +89,8 @@ sub _update_request {
 sub update {
     my ($self, $face_list_id, %param) = @_;
     my $req = $self->_update_request($face_list_id);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 1;

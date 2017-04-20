@@ -50,14 +50,14 @@ sub request {
     my $body;
     if ($res->content) {
         if ($res->content_type !~ /application\/json/) {
-            croak($res->content); 
+            $body = $res->content; 
         }
         $body = $self->json->decode($res->content);
     }
     if (!$res->is_success) {
-        croak($body->{error}{message});
+        croak($body->{error}{message} ? $body->{error}{message} : $body->{message});
     }
-    $body;
+    wantarray ? ($body, $res->headers) : $body;
 }
 
 sub build_headers {

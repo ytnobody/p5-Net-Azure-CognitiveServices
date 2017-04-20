@@ -15,7 +15,8 @@ sub _add_face_request {
 sub add_face {
     my ($self, $person_group_id, $person_id, $image_url, %param) = @_;
     my $req = $self->_add_face_request($person_group_id, $person_id, $image_url, %param);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _create_request {
@@ -26,7 +27,8 @@ sub _create_request {
 sub create {
     my ($self, $person_group_id, %param) = @_;
     my $req = $self->_create_request($person_group_id, %param);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _delete_request {
@@ -37,7 +39,8 @@ sub _delete_request {
 sub delete {
     my ($self, $person_group_id, $person_id) = @_;
     my $req = $self->_delete_request($person_group_id, $person_id);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _delete_face_request {
@@ -48,7 +51,8 @@ sub _delete_face_request {
 sub delete_face {
     my ($self, $person_group_id, $person_id, $persisted_face_id) = @_;
     my $req = $self->build_request($person_group_id, $person_id, $persisted_face_id);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _get_request {
@@ -59,7 +63,8 @@ sub _get_request {
 sub get {
     my ($self, $person_group_id, $person_id) = @_;
     my $req = $self->_get_request($person_group_id, $person_id);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _get_face_request {
@@ -70,7 +75,8 @@ sub _get_face_request {
 sub get_face {
     my ($self, $person_group_id, $person_id, $persisted_face_id) = @_;
     my $req = $self->_get_face_request($person_group_id, $person_id, $persisted_face_id);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _list_request {
@@ -81,7 +87,8 @@ sub _list_request {
 sub list {
     my ($self, $person_group_id) = @_;
     my $req = $self->_list_request($person_group_id);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _update_request {
@@ -92,7 +99,8 @@ sub _update_request {
 sub update {
     my ($self, $person_group_id, $person_id, %param) = @_;
     my $req = $self->_update_request($person_group_id, $person_id, %param);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _update_face_request {
@@ -106,7 +114,8 @@ sub _update_face_request {
 sub update_face {
     my ($self, $person_group_id, $person_id, $persisted_face_id, %param) = @_;
     my $req = $self->_update_face_request($person_group_id, $person_id, $persisted_face_id, %param);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 1;

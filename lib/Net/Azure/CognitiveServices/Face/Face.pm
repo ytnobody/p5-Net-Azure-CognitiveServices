@@ -18,7 +18,8 @@ sub _detect_request {
 sub detect {
     my ($self, $image_url, %param) = @_;
     my $req = $self->_detect_request($image_url, %param);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _find_similar_request {
@@ -29,7 +30,8 @@ sub _find_similar_request {
 sub find_similar {
     my ($self, %param) = @_;
     my $req = $self->_find_similar_request(%param);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _group_request {
@@ -40,7 +42,8 @@ sub _group_request {
 sub group {
     my ($self, %param) = @_;
     my $req = $self->_group_request(%param);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _identify_request {
@@ -51,7 +54,8 @@ sub _identify_request {
 sub identify {
     my ($self, %param) = @_;
     my $req = $self->_identify_request(%param);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 sub _verify_request {
@@ -62,7 +66,8 @@ sub _verify_request {
 sub verify {
     my ($self, %param) = @_;
     my $req = $self->_verify_request(%param);
-    $self->request($req);
+    my $data = $self->request($req);
+    return $data;
 }
 
 1;
