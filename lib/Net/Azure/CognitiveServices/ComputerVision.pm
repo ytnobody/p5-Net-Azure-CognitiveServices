@@ -59,12 +59,66 @@ sub get_handwritten_text_operation {
     return $data;
 }
 
-sub _generate_thumbnail_request {
+sub _thumbnail_request {
     my ($self, $image_url, %param) = @_;
     $self->build_request(POST => ["generateThumbnail", %param], undef, {url => $image_url});
 }
 
+sub thumbnail {
+    my ($self, $image_url, %param) = @_;
+    my $req = $self->_thumbnail_request($image_url, %param);
+    my $data = $self->request($req);
+    return $data;
+}
 
+sub _list_domain_specific_models_request {
+    my ($self) = @_;
+    $self->build_request(GET => ["models"]);
+}
+
+sub list_domain_specific_models {
+    my ($self) = shift;
+    my $req = $self->_list_domain_specific_models_request;
+    my $data = $self->request($req);
+    return $data;
+}
+
+sub _ocr_request {
+    my ($self, $image_url, %param) = @_;
+    $self->build_request(POST => ["ocr", %param], undef, {url => $image_url});
+}
+
+sub ocr {
+    my ($self, $image_url, %param) = @_;
+    my $req = $self->_ocr_request($image_url);
+    my $data = $self->request($req);
+    return $data;
+}
+
+sub _recognize_domain_specific_content_request {
+    my ($self, $image_url, %param) = @_;
+    my $model = $param{model};
+    $self->build_request(POST => ["models/$model/analyze"], undef, {url => $image_url});
+}
+
+sub recognize_domain_specific_content {
+    my ($self, $image_url, %param) = @_;
+    my $req = $self->_recognize_domain_specific_content_request($image_url, %param);
+    my $data = $self->request($req);
+    return $data;
+}
+
+sub _tag_request {
+    my ($self, $image_url) = @_;
+    $self->build_request(POST => ["tag"], undef, {url => $image_url});
+}
+
+sub tag {
+    my ($self, $image_url) = @_;
+    my $req = $self->_tag_request($image_url);
+    my $data = $self->request($req);
+    return $data;
+}
 
 1;
 __END__
@@ -91,43 +145,29 @@ Net::Azure::CognitiveServices::ComputerVision - A wrapper class for Computer Vis
 
 =head1 DESCRIPTION
 
-Net::Azure::CognitiveServices::Face provides following subclasses.
 
-=over 4
-
-=item Net::Azure::CognitiveServices::Face::Face
-
-=item Net::Azure::CognitiveServices::Face::FaceList
-
-=item Net::Azure::CognitiveServices::Face::Person
-
-=item Net::Azure::CognitiveServices::Face::PersonGroup
-
-=back 
 
 Please see L<https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d/operations/563879b61984550f30395236> for more information. 
 
 =head1 METHODS
 
-=head2 access_key
+=head2 analyze
 
-Set the access key for accessing to Azure Cognitive Services APIs
+=head2 describe
 
-=head2 Face
+=head2 get_handwritten_text_operation
 
-Returns an instance of Net::Azure::CognitiveServices::Face::Face
+=head2 thumbnail
 
-=head2 FaceList
+=head2 list_domain_specific_models
 
-Returns an instance of Net::Azure::CognitiveServices::Face::FaceList
+=head2 ocr
 
-=head2 Person
+=head2 recognize_domain_specific_content
 
-Returns an instance of Net::Azure::CognitiveServices::Face::Person
+=head2 recognize_text
 
-=head2 PersonGroup
-
-Returns an instance of Net::Azure::CognitiveServices::Face::PersonGroup
+=head2 tag
 
 =head1 LICENSE
 
