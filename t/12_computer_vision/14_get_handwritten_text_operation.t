@@ -11,7 +11,7 @@ can_ok $cv, qw/_get_handwritten_text_operation_request/;
 my $img = 'http://example.com/hoge.jpg';
 my $req = $cv->_get_handwritten_text_operation_request('hogehoge');
 isa_ok $req, 'HTTP::Request';
-like $req->uri, qr|^https://westus.api.cognitive.microsoft.com/vision/v1.0/textOperation/hogehoge|;
+like $req->uri, qr|^https://westus.api.cognitive.microsoft.com/vision/v1.0/textOperations/hogehoge|;
 is $req->method, 'GET';
 is $req->header('Content-Type'), 'application/json';
 is $req->header('Ocp-Apim-Subscription-Key'), 'MYSECRET';

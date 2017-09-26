@@ -41,15 +41,13 @@ sub recognize_text {
     my ($self, $image_url, %param) = @_;
     my $req = $self->_recognize_text_request($image_url, %param);
     my ($data, $headers) = $self->request($req);
-    use Data::Dumper;
-    warn Dumper($headers);
-    $data->{'apim-request-id'} = $headers->header('Apim-Request-Id');
-    return $data;
+    my ($operation_id) = $headers->header('Operation-Location') =~ m|textOperations/(.+)$|;
+    return $operation_id;
 }
 
 sub _get_handwritten_text_operation_request {
     my ($self, $operation_id) = @_;
-    $self->build_request(GET => ["textOperation/$operation_id"]);
+    $self->build_request(GET => ["textOperations/$operation_id"]);
 }
 
 sub get_handwritten_text_operation {
@@ -57,6 +55,25 @@ sub get_handwritten_text_operation {
     my $req = $self->_get_handwritten_text_operation_request($operation_id);
     my $data = $self->request($req);
     return $data;
+}
+
+sub poll_text_operation {
+    my ($self, $operation_id) = @_;
+    my $data;
+    while (1) {
+        $data = $self->get_handwritten_text_operation($operation_id);
+        if ($data->{status} eq 'Running') {
+            sleep 1;
+            next;
+        }
+        last;
+    }
+    return $data;
+}
+
+sub extract_handwritten_texts {
+    my ($self, $data) = @_;
+    return map {$_->{text}} @{$data->{recognitionResult}{lines}};
 }
 
 sub _thumbnail_request {
@@ -142,6 +159,10 @@ Net::Azure::CognitiveServices::ComputerVision - A wrapper class for Computer Vis
         details        => [qw/Landmarks/],
         language       => 'en',
     );
+    my $operation_id = $cv->recognize_handwritten_text('http://image.to.example/memo.jpg');
+    my $handwritten  = $cv->poll_text_operation($operation_id);
+    my @lines        = $cv->extract_handwritten_text($handwritten);
+    my $text         = join "\n", @lines;
 
 =head1 DESCRIPTION
 
@@ -156,6 +177,10 @@ Please see L<https://dev.projectoxford.ai/docs/services/563879b61984550e40cbbe8d
 =head2 describe
 
 =head2 get_handwritten_text_operation
+
+=head2 poll_text_operation
+
+=head2 extract_handwritten_text
 
 =head2 thumbnail
 

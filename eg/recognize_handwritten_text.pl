@@ -9,9 +9,10 @@ my $cognitive = Net::Azure::CognitiveServices->new(
 );
 
 my $cv = $cognitive->ComputerVision;
-my $recognized = $cv->recognize_text(
-    'http://isuta.jp/category/iphone/wp-content/tmp/vol/2013/03/memo2.jpg', 
+my $operation_id = $cv->recognize_text(
+    'http://www.scottedelman.com/wordpress/wp-content/uploads/2011/03/PaulLevitzReject1.jpg', 
     handwritten => 'true'
 );
-
-warn Dumper($recognized);
+my $data = $cv->poll_text_operation($operation_id);
+my @lines = $cv->extract_handwritten_texts($data);
+warn Dumper(@lines);
