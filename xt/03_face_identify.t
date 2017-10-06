@@ -2,7 +2,6 @@ use strict;
 use warnings;
 use Test::More;
 use Net::Azure::CognitiveServices;
-use Guard 'guard';
 
 ### instantiate cognitive service
 my $cognitive = Net::Azure::CognitiveServices->new(
@@ -24,7 +23,7 @@ my %image = (
 my $person_group_id = 'dummy';
 
 ### Remove a PersonGroup when finished each tasks
-my $guard = guard {
+END {
     $api->PersonGroup->delete($person_group_id)
 };
 
