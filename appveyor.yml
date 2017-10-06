@@ -6,12 +6,12 @@ install:
   - SET PATH=C:\strawberry\c\bin;C:\strawberry\perl\site\bin;C:\strawberry\perl\bin;%PATH%
   - cpanm -n App::cpm
   - cpm install
-  - echo "%region%"
 
 build: off
 
 test_script:
   - prove -Ilib -r t
+  - prove -Ilib -v -r xt
 
 cache:
   - local_action
