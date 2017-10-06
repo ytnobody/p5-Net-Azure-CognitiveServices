@@ -22,11 +22,6 @@ my %image = (
 ### Definition of PersonGroup ID
 my $person_group_id = 'dummy';
 
-### Remove a PersonGroup when finished each tasks
-END {
-    $api->PersonGroup->delete($person_group_id)
-};
-
 ### Create a PersonGroup
 $api->PersonGroup->create($person_group_id, name => 'Super Star');
 
@@ -68,5 +63,8 @@ my $hit = $api->Person->get($person_group_id, $candidate->{personId});
 ### output a person data
 isa_ok $hit, 'HASH';
 is $hit->{name}, 'Yo Ooizumi', "detected person is 'Yo Ooizumi'";
+
+### Remove a PersonGroup when finished each tasks
+$api->PersonGroup->delete($person_group_id)
 
 done_testing;
