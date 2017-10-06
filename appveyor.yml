@@ -12,8 +12,8 @@ build: off
 test_script:
   # - prove -Ilib -r t
   # - prove -Ilib -v -r xt
-  - echo $access_key_cv
-  - echo $access_key_face
+  - echo "%access_key_cv%"
+  - echo "%access_key_face"
 
 cache:
   - local_action
