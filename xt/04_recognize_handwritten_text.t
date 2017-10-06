@@ -26,7 +26,4 @@ is_deeply [@lines], [
     'STORIES PLEASE'
 ], "Text is array and it contains 'Memo from', 'Paul Levitz', '484 - 8513', 'NO IN JOKE', 'INDUSTRY', 'STORIES PLEASE'";
 
-use Data::Dumper;
-warn Dumper({%ENV});
-
 done_testing;

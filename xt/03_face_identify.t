@@ -65,6 +65,6 @@ isa_ok $hit, 'HASH';
 is $hit->{name}, 'Yo Ooizumi', "detected person is 'Yo Ooizumi'";
 
 ### Remove a PersonGroup when finished each tasks
-$api->PersonGroup->delete($person_group_id)
+$api->PersonGroup->delete($person_group_id);
 
 done_testing;
